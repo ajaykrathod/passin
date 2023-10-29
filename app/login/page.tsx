@@ -16,15 +16,17 @@ export default function Login() {
     const [formMessage, setFormMessage] = useState<string>("")
     const [formError, setFormError] = useState<boolean>(false)
     const [uid, setUid] = useState<string|null>("")
+    const [isUser, setIsUser] = useState<boolean>(false)
     const router = useRouter()
 
     const userGet = trpc.getUser.useQuery({email:email,uid:uid??""})
 
     useEffect(() => {
       if(localStorage.getItem("user")){
+        setIsUser(true)
           router.push('/')
       }
-    },[localStorage.getItem("user")])
+    },[isUser])
 
     const handleLogin = () => {
       if(userGet.data){
