@@ -35,7 +35,9 @@ export default function Login() {
         }
         else {
           if(remember){
-            localStorage.setItem("user",userGet.data.uid)
+            if(typeof window !== 'undefined'){
+              localStorage.setItem("user",userGet.data.uid)
+            }
           }
           router.push('/')
         }

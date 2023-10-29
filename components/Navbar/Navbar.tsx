@@ -10,7 +10,9 @@ function Navbar() {
     const [isUser, setIsUser] = useState(false)
 
     const handleLogout = () => {
-        localStorage.removeItem("user")
+        if(typeof window !== 'undefined'){
+            localStorage.removeItem("user")
+        }
         setIsUser(false)
         router.push('/login')
     }
